@@ -104,6 +104,12 @@ describe('XCUITestDriver - element(s)', function () {
   });
 
   describe('interactions', () => {
+    before(async () => {
+      await deleteSession();
+      driver = await initSession(UICATALOG_CAPS);
+    });
+    after(deleteSession);
+
     let text1 = 'bunchoftextthatwonttriggerautocomplete';
     let text2 = 'differenttextthatwonttriggerautocomplete';
     let secureText = _.map(new Array(text1.length), () => '•').join('');
